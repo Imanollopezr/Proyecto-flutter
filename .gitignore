@@ -1,0 +1,49 @@
+# --- General ---
+*.log
+*.tmp
+*.temp
+*.DS_Store
+
+# --- IDEs ---
+.vscode/
+.idea/
+
+# --- Flutter / Dart ---
+pet_love_app/.dart_tool/
+pet_love_app/.pub-cache/
+pet_love_app/.packages
+pet_love_app/build/
+pet_love_app/.flutter-plugins
+pet_love_app/.flutter-plugins-dependencies
+
+# --- Android ---
+pet_love_app/android/.gradle/
+pet_love_app/android/build/
+
+# --- iOS ---
+pet_love_app/ios/Flutter/ephemeral/
+pet_love_app/ios/.generated/
+pet_love_app/ios/Pods/
+pet_love_app/ios/build/
+
+# --- Desktop builds ---
+pet_love_app/linux/build/
+pet_love_app/macos/build/
+pet_love_app/windows/build/
+
+# --- Web ---
+pet_love_app/web/.dart_tool/
+pet_love_app/web/.cache/
+
+# --- .NET (API) ---
+api-backend/api-backend/**/bin/
+api-backend/api-backend/**/obj/
+api-backend/api-backend/**/.vs/
+# Opcional si solo lo usas local
+api-backend/api-backend/**/Properties/launchSettings.json
+api-backend/api-backend/**/appsettings.Development.json
+api-backend/api-backend/**/appsettings.Local.json
+api-backend/api-backend/**/appsettings.Development.json
+api-backend/api-backend/**/appsettings.Local.json
+api-backend/api-backend/**/bin/
+api-backend/api-backend/**/obj/

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bienvenido a PetLove</title>
+  <style>
+    body { margin:0; padding:0; background:#f6f7f9; font-family: Arial, sans-serif; color:#202124; }
+    .container { max-width:600px; margin:0 auto; background:#ffffff; border-radius:12px; overflow:hidden; }
+    .brand { background:#FFC928; padding:24px; text-align:center; }
+    .brand img { max-height:40px; }
+    .content { padding:24px; }
+    h1 { margin:0 0 12px 0; font-size:24px; line-height:1.3; }
+    p { margin:0 0 12px 0; line-height:1.6; }
+    .cta { display:inline-block; padding:12px 18px; background:#202124; color:#fff; text-decoration:none; border-radius:8px; font-weight:bold; }
+    .cta-secondary { display:inline-block; margin-left:12px; color:#202124; text-decoration:underline; }
+    .block { background:#fafafa; border:1px solid #eee; border-radius:8px; padding:16px; margin-top:16px; }
+    .footer { font-size:12px; color:#6b7280; padding:16px 24px 24px 24px; text-align:center; }
+    .pill { display:inline-block; background:#fff8e1; border:1px solid #ffe082; padding:6px 10px; border-radius:999px; font-size:12px; margin-bottom:12px; }
+    @media (max-width:600px){ .content{ padding:16px; } .cta-secondary{ display:block; margin:10px 0 0 0; } }
+  </style>
+</head>
+<body>
+  <div style="display:none;max-height:0;overflow:hidden;">Explora productos y primeros pasos para tus mascotas</div>
+
+  <div class="container">
+    <div class="brand">
+      <img src="{{brandLogoUrl}}" alt="PetLove">
+    </div>
+    <div class="content">
+      <span class="pill">¡Qué gusto tenerte con nosotros, {{userName}}!</span>
+      <h1>Bienvenido a PetLove</h1>
+      <p>
+        Gracias por registrarte. Desde hoy tendrás recomendaciones personalizadas, ofertas y
+        todo lo que tus mascotas necesitan en un solo lugar.
+      </p>
+      <p>
+        Para comenzar, explora nuestro catálogo o completa tu perfil para mejorar las sugerencias.
+      </p>
+      <p style="margin:18px 0;">
+        <a class="cta" href="{{ctaUrl}}" target="_blank" rel="noopener">Explorar catálogo</a>
+        <a class="cta-secondary" href="{{profileUrl}}" target="_blank" rel="noopener">Completar perfil</a>
+      </p>
+
+      <div class="block">
+        <p style="margin-bottom:8px;"><strong>Primeros pasos</strong></p>
+        <p>1) Completa tu perfil para recomendaciones más precisas.</p>
+        <p>2) Activa notificaciones para no perder ofertas.</p>
+        <p>3) Guarda tus productos favoritos y crea tu lista.</p>
+      </div>
+
+      <p style="margin-top:12px;"><strong>Tu cuenta:</strong> {{userEmail}} • Mis pedidos: <a href="{{ordersUrl}}" target="_blank" rel="noopener">{{ordersUrl}}</a></p>
+
+      <div class="block" style="margin-top:16px;">
+        <p style="margin-bottom:8px;"><strong>Tu cupón de bienvenida</strong></p>
+        <p>Usa el código <strong>{{couponCode}}</strong> en tu primera compra.</p>
+        <p>Aplican términos y condiciones: <a href="{{termsUrl}}" target="_blank" rel="noopener">ver T&C</a>.</p>
+      </div>
+
+      <div class="block" style="margin-top:16px;">
+        <p style="margin-bottom:8px;"><strong>¿Necesitas ayuda?</strong></p>
+        <p>Centro de ayuda: <a href="{{helpUrl}}" target="_blank" rel="noopener">{{helpUrl}}</a></p>
+        <p>Preguntas frecuentes: <a href="{{faqUrl}}" target="_blank" rel="noopener">{{faqUrl}}</a></p>
+        <p>Soporte: <a href="mailto:{{supportEmail}}">{{supportEmail}}</a> • Tel: {{supportPhone}} ({{supportHours}})</p>
+      </div>
+
+      <p style="margin-top:16px;">
+        Síguenos:
+        <a href="{{facebookUrl}}" target="_blank" rel="noopener">Facebook</a> •
+        <a href="{{instagramUrl}}" target="_blank" rel="noopener">Instagram</a>
+      </p>
+      <p>
+        Privacidad: <a href="{{privacyUrl}}" target="_blank" rel="noopener">{{privacyUrl}}</a> •
+        Preferencias: <a href="{{unsubscribeUrl}}" target="_blank" rel="noopener">gestionar suscripción</a>
+      </p>
+    </div>
+
+    <div class="footer">
+      Recibes este correo porque creaste una cuenta en PetLove.<br>
+      Si no fuiste tú, por favor contáctanos.
+    </div>
+  </div>
+</body>
+</html>

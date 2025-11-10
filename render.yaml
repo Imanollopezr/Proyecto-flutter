@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: petlove-api
+    runtime: docker
+    # Build from backend root to include Core/Infrastructure projects
+    rootDir: api-backend/api-backend
+    dockerfilePath: ./PetLove.API/Dockerfile
+    dockerContext: .
+    plan: starter
+    autoDeployTrigger: 'automatic'
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      # Añade aquí tus variables sensibles (DB, JWT, SendGrid) desde el dashboard de Render
+      # - key: CONNECTION_STRING
+      #   sync: false
+      # - key: JWT_SECRET
+      #   sync: false
+      # - key: SENDGRID_API_KEY
+      #   sync: false
