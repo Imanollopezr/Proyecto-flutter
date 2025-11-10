@@ -235,13 +235,17 @@ app.MapControllers();
 // Inicializar la base de datos y datos esenciales
 using (var scope = app.Services.CreateScope())
 {
+    var db = scope.ServiceProvider.GetRequiredService<PetLoveDbContext>();
+    // Aplicar migraciones pendientes al arrancar (PostgreSQL)
+    await db.Database.MigrateAsync();
+
     var initializer = scope.ServiceProvider.GetRequiredService<DatabaseInitializer>();
     await initializer.InitializeAsync();
 }
 // Registrar eventos de ciclo de vida para confirmar cierre ordenado
 app.Lifetime.ApplicationStarted.Register(() =>
 {
-    app.Logger.LogInformation("Aplicación iniciada. Persistencia SQL Server activa.");
+    app.Logger.LogInformation("Aplicación iniciada. Persistencia PostgreSQL activa.");
 });
 app.Lifetime.ApplicationStopping.Register(() =>
 {
