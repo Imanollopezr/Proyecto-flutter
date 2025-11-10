@@ -15,8 +15,9 @@ Esta guía explica cómo desplegar SOLO el backend (.NET 8) en Render usando el 
    - Región y plan: escoge los que prefieras.
 
 3. Añade variables de entorno (Secrets)
-   - Base de datos:
-     - `ConnectionStrings__DefaultConnection` → cadena de conexión SQL Server.
+   - Base de datos (PostgreSQL):
+     - `ConnectionStrings__DefaultConnection` → cadena de conexión PostgreSQL.
+       - En Render, usa el valor de `DATABASE_URL` (cópialo tal cual) o el formato: `Host=<host>;Port=5432;Database=<db>;Username=<user>;Password=<pass>;SSL Mode=Require;Trust Server Certificate=true`.
    - JWT:
      - `Jwt__Key` → clave secreta para firmar tokens (string suficientemente largo).
      - `Jwt__Issuer` → por ejemplo `PetLove.API`.
@@ -39,6 +40,7 @@ Esta guía explica cómo desplegar SOLO el backend (.NET 8) en Render usando el 
 
 5. Verifica el despliegue
    - Abre los Logs en Render para confirmar el arranque.
+   - La API aplica automáticamente las migraciones de EF Core al iniciar.
    - Prueba el endpoint raíz o Swagger (si está habilitado) en la URL pública del servicio.
 
 6. Seguridad y buenas prácticas
