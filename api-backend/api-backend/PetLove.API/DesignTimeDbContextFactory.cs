@@ -36,15 +36,15 @@ namespace PetLove.API
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                // Fallback por si no hay cadena: intentar SQLEXPRESS por defecto
-                connectionString = "Server=.\\SQLEXPRESS;Database=PetLove;Trusted_Connection=true;MultipleActiveResultSets=true;TrustServerCertificate=true";
+                // Fallback si no hay cadena: PostgreSQL local por defecto
+                connectionString = "Host=localhost;Port=5432;Database=petlove;Username=postgres;Password=postgres";
             }
 
-            optionsBuilder.UseSqlServer(connectionString, sqlOptions =>
+            optionsBuilder.UseNpgsql(connectionString, npgsqlOptions =>
             {
-                sqlOptions.MigrationsAssembly("PetLove.API");
-                sqlOptions.CommandTimeout(300);
-                sqlOptions.EnableRetryOnFailure(3, TimeSpan.FromSeconds(30), null);
+                npgsqlOptions.MigrationsAssembly("PetLove.API");
+                npgsqlOptions.CommandTimeout(300);
+                npgsqlOptions.EnableRetryOnFailure(3, TimeSpan.FromSeconds(30), null);
             });
 
             return new PetLoveDbContext(optionsBuilder.Options);

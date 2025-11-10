@@ -54,7 +54,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Configurar Entity Framework con SQL Server o InMemory (fallback para desarrollo)
+// Configurar Entity Framework con PostgreSQL o InMemory (fallback para desarrollo)
 var useInMemory = builder.Configuration.GetValue<bool>("UseInMemoryDb");
 if (useInMemory)
 {
@@ -69,14 +69,14 @@ if (useInMemory)
 else
 {
     builder.Services.AddDbContext<PetLoveDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-            sqlOptions => {
-                sqlOptions.MigrationsAssembly("PetLove.API");
-                sqlOptions.CommandTimeout(300); // 5 minutos de timeout para comandos
-                sqlOptions.EnableRetryOnFailure(
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+            npgsqlOptions => {
+                npgsqlOptions.MigrationsAssembly("PetLove.API");
+                npgsqlOptions.CommandTimeout(300); // 5 minutos de timeout para comandos
+                npgsqlOptions.EnableRetryOnFailure(
                     maxRetryCount: 3,
                     maxRetryDelay: TimeSpan.FromSeconds(30),
-                    errorNumbersToAdd: null);
+                    errorCodesToAdd: null);
             }));
 }
 
