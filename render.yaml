@@ -1,20 +1,54 @@
+databases:
+  - name: petlove-db
+    plan: starter
+    databaseName: petlove
+    user: petlove
+
 services:
   - type: web
     name: petlove-api
-    runtime: docker
-    # Build from backend root to include Core/Infrastructure projects
-    rootDir: api-backend/api-backend
-    dockerfilePath: ./PetLove.API/Dockerfile
-    dockerContext: .
-    plan: starter
-    autoDeployTrigger: 'automatic'
+    runtime: dotnet
+    rootDir: api-backend/api-backend/PetLove.API
+    buildCommand: dotnet restore && dotnet publish -c Release -o out
+    startCommand: dotnet out/PetLove.API.dll
+    autoDeploy: true
     envVars:
-      - key: ASPNETCORE_ENVIRONMENT
-        value: Production
-      # Añade aquí tus variables sensibles (DB, JWT, SendGrid) desde el dashboard de Render
-      # - key: CONNECTION_STRING
-      #   sync: false
-      # - key: JWT_SECRET
-      #   sync: false
-      # - key: SENDGRID_API_KEY
-      #   sync: false
+      # Conexión a PostgreSQL: se inyecta automáticamente desde la base creada arriba
+      - key: ConnectionStrings__DefaultConnection
+        fromDatabase:
+          name: petlove-db
+          property: connectionString
+
+      # Puerto para Render; Kestrel escuchará en 10000
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:10000
+
+      # JWT
+      - key: Jwt__Key
+        sync: false
+      - key: Jwt__Issuer
+        sync: false
+      - key: Jwt__Audience
+        sync: false
+
+      # Frontend base URL (CORS y enlaces)
+      - key: Frontend__BaseUrl
+        sync: false
+
+      # SendGrid: puedes usar cualquiera de estas dos claves
+      - key: SendGrid__ApiKey
+        sync: false
+      - key: SENDGRID_API_KEY
+        sync: false
+
+      # Remitente y plantillas (opcional)
+      - key: SendGrid__FromEmail
+        sync: false
+      - key: SendGrid__FromName
+        sync: false
+      - key: SendGrid__Templates__Welcome
+        sync: false
+      - key: SendGrid__Templates__VerificationCode
+        sync: false
+      - key: SendGrid__Templates__PasswordReset
+        sync: false
