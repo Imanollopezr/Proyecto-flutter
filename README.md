@@ -25,7 +25,7 @@ Esta guía explica cómo desplegar SOLO el backend (.NET 8) en Render usando el 
      - `Jwt__ExpiryInHours` → horas de expiración (por ejemplo `2`).
      - `Jwt__RefreshTokenExpiryInDays` → días de expiración del refresh (por ejemplo `7`).
    - SendGrid:
-     - `SendGrid__ApiKey` → tu API key de SendGrid (no commitear en código).
+     - `SendGrid__ApiKey` o `SENDGRID_API_KEY` → tu API key de SendGrid (no commitear en código).
      - `SendGrid__FromEmail` → correo remitente (opcional).
      - `SendGrid__FromName` → nombre remitente (opcional).
      - `SendGrid__Templates__Welcome` → ID de plantilla (opcional).

@@ -88,7 +88,11 @@ builder.Services.AddScoped<IPasswordService, PasswordService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 // Configurar SendGrid
-var sendGridApiKey = builder.Configuration["SendGrid:ApiKey"];
+// Soporta claves desde: SendGrid:ApiKey (appsettings/env), SendGrid__ApiKey (env), y SENDGRID_API_KEY (env)
+var sendGridApiKey =
+    builder.Configuration["SendGrid:ApiKey"]
+    ?? builder.Configuration["SendGrid__ApiKey"]
+    ?? builder.Configuration["SENDGRID_API_KEY"];
 
 Console.WriteLine($"SendGrid API Key configurada: {(!string.IsNullOrEmpty(sendGridApiKey) ? "SÍ" : "NO")}");
 Console.WriteLine($"API Key válida: {(!string.IsNullOrEmpty(sendGridApiKey) && sendGridApiKey != "YOUR_SENDGRID_API_KEY_HERE" && sendGridApiKey.StartsWith("SG.") ? "SÍ" : "NO")}");
